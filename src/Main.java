@@ -6,5 +6,4 @@ public class Main {
         ElevatorsHall elevatorsHall = new ElevatorsHall();
         elevatorsHall.start();
     }
-
 }

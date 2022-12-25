@@ -1,17 +1,14 @@
-public abstract class Elevator implements Runnable{
+public abstract class Elevator implements Runnable {
     public int capacity;
     public int periodInSeconds;
     public int peopleCounting;
-
-
-
-
     private CurrentCountPeople peoplesRest;
-    public Elevator(CurrentCountPeople currentCountPeople){
-        peoplesRest = currentCountPeople;
 
+    public Elevator(CurrentCountPeople currentCountPeople) {
+        peoplesRest = currentCountPeople;
     }
-    private  boolean liftPeople(){
+
+    private boolean liftPeople() {
         boolean sucsessLift = false;
         int countOfPeople = peoplesRest.decrimentPeoplesRest(capacity);
         if (countOfPeople > 0) {
@@ -24,22 +21,23 @@ public abstract class Elevator implements Runnable{
                 throw new RuntimeException(e);
             }
         }
-
         return sucsessLift;
     }
 
     @Override
     public void run() {
-        while (liftPeople()){}
-
-    }
-    public void endLift(){
-        if (peopleCounting > 0) {
-            showTotal();
-            peopleCounting =0;
+        while (liftPeople()) {
         }
     }
 
-    public abstract  void showResultsLiftPeople(int countOfPeople);
+    public void endLift() {
+        if (peopleCounting > 0) {
+            showTotal();
+            peopleCounting = 0;
+        }
+    }
+
+    public abstract void showResultsLiftPeople(int countOfPeople);
+
     public abstract void showTotal();
 }

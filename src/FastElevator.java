@@ -1,4 +1,4 @@
-public class FastElevator extends Elevator{
+public class FastElevator extends Elevator {
 
     public FastElevator(CurrentCountPeople peoples) {
         super(peoples);
@@ -8,11 +8,11 @@ public class FastElevator extends Elevator{
 
     @Override
     public void showResultsLiftPeople(int countOfPeople) {
-        System.out.println("скоростной лифт поднял "+countOfPeople+" человек");
+        System.out.println("скоростной лифт поднял " + countOfPeople + " человек");
     }
 
     @Override
     public void showTotal() {
-        System.out.println("скоростной лифт поднял всего "+peopleCounting+" человек");
+        System.out.println("скоростной лифт поднял всего " + peopleCounting + " человек");
     }
 }

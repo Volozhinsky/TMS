@@ -5,13 +5,13 @@ public class ElevatorsHall {
     private BigElevator bigElevator;
     private FastElevator fastElevator;
 
-
-    public ElevatorsHall(){
+    public ElevatorsHall() {
         currentCountPeople = new CurrentCountPeople();
         bigElevator = new BigElevator(currentCountPeople);
         fastElevator = new FastElevator(currentCountPeople);
     }
-    public synchronized void startLifting(int peopleCount){
+
+    public synchronized void startLifting(int peopleCount) {
         currentCountPeople.setCount(peopleCount);
         Thread bigElevatorThread = new Thread(bigElevator);
         Thread fastElevatorThread = new Thread(fastElevator);
@@ -25,33 +25,27 @@ public class ElevatorsHall {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
-
         fastElevator.endLift();
         bigElevator.endLift();
     }
 
-    public void start(){
+    public void start() {
         int passengersCount = 0;
         do {
-            passengersCount= getPassengersCount();
-            if (passengersCount>0) {
+            passengersCount = getPassengersCount();
+            if (passengersCount > 0) {
                 startLifting(passengersCount);
             }
-
-            //           }
-        }while (passengersCount>0 );
+        } while (passengersCount > 0);
     }
 
-    private static int getPassengersCount(){
+    private static int getPassengersCount() {
         System.out.println("введите количество людей");
         Scanner scanner = new Scanner(System.in);
         String countStr;
         do {
             countStr = scanner.nextLine();
-        }while (!countStr.matches("\\d+"));
+        } while (!countStr.matches("\\d+"));
         return Integer.parseInt(countStr);
     }
-
-
 }
